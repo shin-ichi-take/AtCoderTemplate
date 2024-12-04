@@ -5,6 +5,44 @@
 //  Created by 竹村信一 on 2024/11/30.
 //
 
+// ⭐️AtCoder データ読み込みポイント⭐️
+//１つの整数を読み込む場合
+//readInt()
+//
+//スペースで区切られた整数列を１行読み込む場合
+//readInts()
+//
+//文字列を読み込む場合
+//readString()
+//
+//スペースで区切られた文字列を１行読み込む場合
+//readStrings()
+
+//文字列を[String]にしたい場合
+//例："abc" -> ["a","b","c"]
+//readString().map{String($0)}
+//
+//[String]を文字列にしたい場合
+//例：["a","b","c"] -> "abc"
+//let arr = ["a","b","c"]
+//let str = arr.joined()
+//
+//[String]の要素ごとにスペースで区切った文字列が欲しい場合
+//例：["a","b","c"] -> "a b c"
+//let arr = ["a","b","c"]
+//let str = arr.joined(separator: " ")
+
+//次のようなデータを２次元配列で読み込みたい場合
+//10 20 30
+//40 50 60
+//70 80 90
+//
+//var arr = [[Int]]()
+//for _ in 0 ..< 3{
+//    arr.append(readInts())
+//}
+
+
 import Foundation
 
 // 整数読み込み
@@ -91,7 +129,6 @@ print(lowerBound(key: 50, arr: b, compare: >=))
 func lowerBound(key:Int,arr:[Int],compare:(Int,Int) -> Bool) -> Int{
     var left = -1
     var right = arr.count
-    
     while right - left > 1{
         let mid = (left+right)/2
         if compare(key,arr[mid]){
@@ -104,7 +141,7 @@ func lowerBound(key:Int,arr:[Int],compare:(Int,Int) -> Bool) -> Int{
 }
 
 
-
+/// 内部でArraySliceを使っている
 public struct Array2Dim<T:Equatable>{
     private var _value: ArraySlice<ArraySlice<T>>
     public init(_ M:Int,_ N:Int,repeating:T){
@@ -141,6 +178,8 @@ public struct Array1Dim<T:Equatable>{
     }
 }
 
+/// キュー構造
+/// 主に幅優先探索で用いる
 public struct Queue<T> {
     fileprivate var array = ArraySlice<T>()
     
