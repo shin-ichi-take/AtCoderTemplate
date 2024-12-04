@@ -48,7 +48,8 @@ func readStrings() -> [String] {
 }
 
 
-//二分探索
+/// 二分探索アルゴリズム
+/// a[index] >= keyという条件を満たす最小のindexを返す
 func lowerBound(key:Int,arr:[Int]) -> Int{
     func isOK(index:Int,key:Int) -> Bool{
         return arr[index] >= key
@@ -59,6 +60,41 @@ func lowerBound(key:Int,arr:[Int]) -> Int{
     while right - left > 1{
         let mid = (left+right)/2
         if isOK(index: mid, key: key){
+            right = mid
+        }else{
+            left = mid
+        }
+    }
+    return right
+}
+
+
+/*
+let a = [1, 14, 32, 51, 51, 51, 243, 419, 750, 910]
+
+print(lowerBound(key: 51, arr: a))
+print(lowerBound(key: 1, arr: a))
+print(lowerBound(key: 910, arr: a))
+print(lowerBound(key: 52, arr: a))
+
+print(">=")
+let b = [1, 14, 32, 51, 51, 51, 243, 419, 750, 910].sorted(by: >)
+print(lowerBound(key: 51, arr: b, compare: >=))
+print(lowerBound(key: 1, arr: b, compare: >=))
+print(lowerBound(key: 910, arr: b, compare : >=))
+print(lowerBound(key: 52, arr: b, compare: >=))
+print(lowerBound(key: 50, arr: b, compare: >=))
+// 二分探索アルゴリズム
+// 昇順の場合 key以上となる最小のインデックス値
+// 降順の場合 key以下となる最小インデックス値
+*/
+func lowerBound(key:Int,arr:[Int],compare:(Int,Int) -> Bool) -> Int{
+    var left = -1
+    var right = arr.count
+    
+    while right - left > 1{
+        let mid = (left+right)/2
+        if compare(key,arr[mid]){
             right = mid
         }else{
             left = mid
