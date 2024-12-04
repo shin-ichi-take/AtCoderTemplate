@@ -48,6 +48,27 @@ func readStrings() -> [String] {
 }
 
 
+//二分探索
+func lowerBound(key:Int,arr:[Int]) -> Int{
+    func isOK(index:Int,key:Int) -> Bool{
+        return arr[index] >= key
+    }
+    var left = -1
+    var right = arr.count
+    
+    while right - left > 1{
+        let mid = (left+right)/2
+        if isOK(index: mid, key: key){
+            right = mid
+        }else{
+            left = mid
+        }
+    }
+    return right
+}
+
+
+
 public struct Array2Dim<T:Equatable>{
     private var _value: ArraySlice<ArraySlice<T>>
     public init(_ M:Int,_ N:Int,repeating:T){
