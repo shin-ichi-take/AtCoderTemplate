@@ -42,7 +42,13 @@
 //    arr.append(readInts())
 //}
 
+//⭐️幅優先探索にはDequeを用いる
+//加えるにはappend()
+//取り出すにはpopFirst()
+//を用いる
 
+
+import Collections
 import Foundation
 
 // 整数読み込み
