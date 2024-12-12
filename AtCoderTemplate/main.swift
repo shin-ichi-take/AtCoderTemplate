@@ -217,3 +217,15 @@ public struct Queue<T> {
 }
 
 
+// 範囲を生成
+@inlinable func range(_ start:Int,_ end:Int) -> Range<Int>{
+    return start ..< end
+}
+
+@inlinable func range(_ end:Int) -> Range<Int>{
+    return 0 ..< end
+}
+
+@inlinable func rangeStride(_ start:Int,_ end:Int,_ step:Int) -> StrideTo<Int>{
+    return stride(from: start, to: end, by: step)
+}
