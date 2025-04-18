@@ -71,22 +71,22 @@ func readStrings() -> [String] {
 }
 
 
-@inlinable func read2IntsTupple() -> (Int,Int){
+@inlinable func read2IntsTuple() -> (Int,Int){
     let tmp = readInts()
     return (tmp[0],tmp[1])
 }
 
-@inlinable func read3IntsTupple() -> (Int,Int,Int){
+@inlinable func read3IntsTuple() -> (Int,Int,Int){
     let tmp = readInts()
     return (tmp[0],tmp[1],tmp[2])
 }
 
-@inlinable func read4IntsTupple() -> (Int,Int,Int,Int){
+@inlinable func read4IntsTuple() -> (Int,Int,Int,Int){
     let tmp = readInts()
     return (tmp[0],tmp[1],tmp[2],tmp[3])
 }
 
-@inlinable func read5IntsTupple() -> (Int,Int,Int,Int,Int){
+@inlinable func read5IntsTuple() -> (Int,Int,Int,Int,Int){
     let tmp = readInts()
     return (tmp[0],tmp[1],tmp[2],tmp[3],tmp[4])
 }
