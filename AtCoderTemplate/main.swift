@@ -317,3 +317,37 @@ extension PriorityQueue: Sequence, IteratorProtocol {
 @inlinable func rangeStride(_ start:Int,_ end:Int,_ step:Int) -> StrideTo<Int>{
     return stride(from: start, to: end, by: step)
 }
+
+// 繰り返し二乗法
+func repSq(_ a:Int,n:Int) -> Int{
+    var N = n
+    var base = a
+    var ans = 1
+    while N > 0{
+        if N & 1 == 1{
+            ans *= base
+        }
+        base *= base
+        N >>= 1
+    }
+    return ans
+}
+
+func repSqMod(_ a:Int,n:Int,mod:Int) -> Int{
+    var N = n
+    var base = a
+    var ans = 1
+    while N > 0{
+        if N & 1 == 1{
+            ans *= base
+            ans %= mod
+        }
+        base *= base
+        N >>= 1
+    }
+    return ans
+}
+
+//print(repSq(2, n: 3))
+//print(repSqMod(3, n: 10, mod: 7))
+
