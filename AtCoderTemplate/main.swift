@@ -351,3 +351,56 @@ func repSqMod(_ a:Int,n:Int,mod:Int) -> Int{
 //print(repSq(2, n: 3))
 //print(repSqMod(3, n: 10, mod: 7))
 
+
+
+/// 配列を辞書順で次の順列に変更します。
+/// 配列が辞書順で最後の順列（降順）の場合、最初の順列（昇順）に変更されます。
+///
+/// - Parameter arr: 変更対象の配列（Int型）
+func nextPermutation(_ arr: inout [Int]) {
+    let n = arr.count
+    guard n > 1 else { return }
+
+    // 1. 右から探索し、arr[i] < arr[i + 1] となる最初のインデックス i を見つける
+    var i = n - 2
+    while i >= 0 && arr[i] >= arr[i + 1] {
+        i -= 1
+    }
+
+    if i >= 0 {
+        // 2. i が見つかった場合、再度右から探索し、arr[i] < arr[j] となる最初のインデックス j を見つける
+        var j = n - 1
+        while arr[i] >= arr[j] {
+            j -= 1
+        }
+        // 3. arr[i] と arr[j] を交換する
+        arr.swapAt(i, j)
+    }
+
+    // 4. i + 1 から末尾までを反転させる
+    // (i が見つからなかった場合は、配列全体が反転し最初の順列に戻る)
+    arr[(i + 1)...].reverse()
+}
+
+/*
+// MARK: - 実行例
+
+var arr = [1, 2, 3]
+print("--- [1, 2, 3] の全順列 ---")
+print(arr) // 初期状態
+
+// 3! = 6 なので、6回呼び出すと全ての順列を巡回して元の状態に戻る
+for _ in 1...6 {
+    nextPermutation(&arr)
+    print(arr)
+}
+
+print("\n--- [0, 1, 2, 3] の全順列 ---")
+var arr2 = [0, 1, 2, 3]
+let factorial = (1...arr2.count).reduce(1, *) // 4! = 24
+print(arr2)
+for _ in 1..<factorial { // 23回呼び出して残りの全順列を表示
+    nextPermutation(&arr2)
+    print(arr2)
+}
+*/
